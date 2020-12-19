@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<title>Zero Division: calc() serialization.</title>
+<link rel="author" title="Seokho Song"  href="mailto:0xdevssh@gmail.com">
+<link rel="help" href="https://drafts.csswg.org/css-values/#calc-type-checking">
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<div id="dummy"></div>
+<div id="log"></div>
+<script>
+test(function() {
+        //TEST CASE                         | EXPECTED
+    var tests = {
+    "100px * 0 / 0"                         : "calc(NaN * 1px)",
+    "100px / 0"                             :"calc(infinity * 1px)",
+    "100px / (0)"                           :"calc(infinity * 1px)",
+    "100px / (2 - 2)"                       :"calc(infinity * 1px)",
+    "100px / (2 - (-62 + 64))"              :"calc(infinity * 1px)",
+    "100px * (1 / 0)"                       :"calc(infinity * 1px)",
+    "100px * (1 / (0))"                     :"calc(infinity * 1px)",
+    "100px * (1 / (2 - 2))"                 :"calc(infinity * 1px)",
+    "100px * (1 / (2 - (-62 + 64)))"        :"calc(infinity * 1px)",
+    };
+    var dummy = document.getElementById("dummy");
+    for (var test in tests) {
+        dummy.style.width =  "calc(" + test+ ")";
+        assert_equals(dummy.style.width, tests[test], "Serialization of " + test);
+    }
+}, "calc() serialization for zero divisions")
+</script>

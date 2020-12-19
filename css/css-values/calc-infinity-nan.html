@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<title>Infinity and NaN: calc() serialization.</title>
+<link rel="author" title="Seokho Song"  href="mailto:0xdevssh@gmail.com">
+<link rel="help" href="https://drafts.csswg.org/css-values/#calc-type-checking">
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<div id="dummy"></div>
+<div id="log"></div>
+<script>
+test(function() {
+    //TEST CASE                         | EXPECTED
+    var tests = {
+        "1px * NaN"                     :"calc(NaN * 1px)",
+        "1px * nan"                     :"calc(NaN * 1px)",
+        "1px * infinity / infinity"     :"calc(NaN * 1px)",
+        "1px * 0 * infinity"            :"calc(NaN * 1px)",
+        "1px * (infinity + -infinity)"  :"calc(NaN * 1px)",
+        "1px * (-infinity + infinity)"  :"calc(NaN * 1px)",
+        "1px * (infinity - infinity)"   :"calc(NaN * 1px)",
+        "1px * infinity"                :"calc(infinity * 1px)",
+        "1px * -infinity"               :"calc(-infinity * 1px)",
+        "1px * iNFinIty"                :"calc(infinity * 1px)",
+        "1px * (infinity + infinity)"   :"calc(infinity * 1px)",
+        "1px * (-infinity + -infinity)" :"calc(-infinity * 1px)",
+        "1px * 1/infinity"              :"calc(0px)",
+        "1px * infinity * infinity"     :"calc(infinity * 1px)",
+        "1px * -infinity * -infinity"   :"calc(infinity * 1px)",
+    };
+    var dummy = document.getElementById("dummy");
+    for (var test in tests) {
+        dummy.style.width =  "calc(" + test+ ")";
+        assert_equals(dummy.style.width, tests[test], "Serialization of " + test);
+    }
+}, "clac() serialization for infinity and NaN")
+</script>
