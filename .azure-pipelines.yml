@@ -109,11 +109,11 @@ jobs:
   - template: tools/ci/azure/install_safari.yml
   - template: tools/ci/azure/update_hosts.yml
   - template: tools/ci/azure/update_manifest.yml
-  - script: ./wpt run --yes --no-manifest-update --manifest MANIFEST.json --metadata infrastructure/metadata/ --log-mach - --log-mach-level info --channel dev chrome infrastructure/
+  - script: ./wpt --py2 run --yes --no-manifest-update --manifest MANIFEST.json --metadata infrastructure/metadata/ --log-mach - --log-mach-level info --channel dev chrome infrastructure/
     displayName: 'Run tests (Chrome Dev)'
-  - script: ./wpt run --yes --no-manifest-update --manifest MANIFEST.json --metadata infrastructure/metadata/ --log-mach - --log-mach-level info --channel nightly firefox infrastructure/
+  - script: ./wpt --py2 run --yes --no-manifest-update --manifest MANIFEST.json --metadata infrastructure/metadata/ --log-mach - --log-mach-level info --channel nightly firefox infrastructure/
     displayName: 'Run tests (Firefox Nightly)'
-  - script: ./wpt run --yes --no-manifest-update --manifest MANIFEST.json --metadata infrastructure/metadata/ --log-mach - --log-mach-level info --channel preview safari infrastructure/
+  - script: ./wpt --py2 run --yes --no-manifest-update --manifest MANIFEST.json --metadata infrastructure/metadata/ --log-mach - --log-mach-level info --channel preview safari infrastructure/
     displayName: 'Run tests (Safari Technology Preview)'
   - template: tools/ci/azure/publish_logs.yml
 
