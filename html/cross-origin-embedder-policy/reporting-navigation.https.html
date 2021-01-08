@@ -86,23 +86,23 @@ async function observeReports(global) {
 //     'NAV': COEP mismatch between the frames.
 //     'NAV-RO': COEP mismatch between the frames (report only).
 const CASES = [
-  { parent: '', target: '', reports: [] },
-  { parent: '', target: COEP, reports: [] },
+  <!--{ parent: '', target: '', reports: [] },-->
+  <!--{ parent: '', target: COEP, reports: [] },-->
   { parent: COEP, target: COEP, reports: ['CORP'] },
-  { parent: COEP, target: '', reports: ['CORP'] },
+  <!--{ parent: COEP, target: '', reports: ['CORP'] },-->
 
-  { parent: '', target: CORP_CROSS_ORIGIN, reports: [] },
-  { parent: COEP, target: CORP_CROSS_ORIGIN, reports: ['NAV'] },
+  <!--{ parent: '', target: CORP_CROSS_ORIGIN, reports: [] },-->
+  <!--{ parent: COEP, target: CORP_CROSS_ORIGIN, reports: ['NAV'] },-->
 
-  { parent: '', target: COEP + CORP_CROSS_ORIGIN, reports: [] },
-  { parent: COEP, target: COEP + CORP_CROSS_ORIGIN, reports: [] },
+  <!--{ parent: '', target: COEP + CORP_CROSS_ORIGIN, reports: [] },-->
+  <!--{ parent: COEP, target: COEP + CORP_CROSS_ORIGIN, reports: [] },-->
 
-  { parent: COEP_RO, target: COEP, reports: ['CORP-RO'] },
-  { parent: COEP_RO, target: '', reports: ['CORP-RO', 'NAV-RO'] },
-  { parent: COEP_RO, target: CORP_CROSS_ORIGIN, reports: ['NAV-RO'] },
-  { parent: COEP_RO, target: COEP + CORP_CROSS_ORIGIN, reports: [] },
+  <!--{ parent: COEP_RO, target: COEP, reports: ['CORP-RO'] },-->
+  <!--{ parent: COEP_RO, target: '', reports: ['CORP-RO', 'NAV-RO'] },-->
+  <!--{ parent: COEP_RO, target: CORP_CROSS_ORIGIN, reports: ['NAV-RO'] },-->
+  <!--{ parent: COEP_RO, target: COEP + CORP_CROSS_ORIGIN, reports: [] },-->
 
-  { parent: COEP, target: COEP_RO + CORP_CROSS_ORIGIN, reports: ['NAV'] },
+  <!--{ parent: COEP, target: COEP_RO + CORP_CROSS_ORIGIN, reports: ['NAV'] },-->
 ];
 
 for (const testcase of CASES) {
